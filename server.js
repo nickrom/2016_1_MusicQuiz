@@ -6,12 +6,9 @@ var HOSTNAME = 'localhost',
     PORT = 8080,
     PUBLIC_DIR = __dirname + '/public_html';
 
-var counter=1;
+var reqCounter=1;
 app.use(function (req, res, done) {
-	// Здесь нужно написать журналирование в формате
-	// (журналирование - вывод в консоль)
-	// [время] [номер запроса по счету]
-	console.log("[%s][%d]\n", Date(), counter++);
+	console.log("[%s][%d]\n", new Date(), reqCounter++);
 	done();
 });
 
