@@ -1,6 +1,6 @@
 html {
     height: 100%;
-    background: #000000 url(/img/2.png)
+    background: url(/img/2.png)
     no-repeat right bottom;
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
