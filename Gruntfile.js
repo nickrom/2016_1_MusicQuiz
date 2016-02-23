@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         },
         
         concurrent: {
-            start:  ['shell', 'watch']
+            tasks:  ['watch', 'shell']
         },
 
         fest: {
@@ -48,5 +48,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-fest');
 
     // результат команды grunt
-    grunt.registerTask('default', ['shell', 'watch']);
+    grunt.registerTask('default', ['concurrent']);
 };
