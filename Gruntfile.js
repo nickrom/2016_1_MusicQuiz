@@ -11,13 +11,19 @@ module.exports = function (grunt) {
         watch: {
             fest: {
                 files: 'templates/*.xml',
-                tasks: ['fest']
+                tasks: ['fest'],
+                options: {
+                    atBegin: true
+                }
             },
             
         },
         
         concurrent: {
-            tasks:  ['watch', 'shell']
+            target:  ['watch', 'shell'],
+            options: {
+                logConcurrentOutput: true,
+            }
         },
 
         fest: {
