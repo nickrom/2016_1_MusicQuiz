@@ -13,7 +13,8 @@
     "grunt-concurrent": "^2.2.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-fest": "^0.1.6",
-    "grunt-shell": "^1.1.2"
+    "grunt-shell": "^1.1.2",
+    "require": "^2.4.20"
   },
   "scripts": {
     "start": "node server"
