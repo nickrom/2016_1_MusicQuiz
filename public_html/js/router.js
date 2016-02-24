@@ -12,16 +12,17 @@ define([
             '*default': 'defaultActions'
         },
         defaultActions: function () {
-            // TODO
+            console.log('default')
         },
         scoreboardAction: function () {
-            // TODO
+            console.log('score')
         },
         gameAction: function () {
-            // TODO
+            console.log('game')
         },
         loginAction: function () {
-            // TODO
+            console.log('login')
+            var view = require('views/login')
         }
     });
 
