@@ -1,3 +1,4 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="scoreboard"></div>
+    <div id="scoreboard">
+    	<h1><a href='#main'>SCOREBOARD</a></h1></div>
 </fest:template>
