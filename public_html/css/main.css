@@ -1,10 +1,26 @@
 html {
-    background: #DCFEF4;
-    font-family: "Galpon Black";
+    background: url(/img/2.png);/*#DCFEF4;*/
 }
+
+@font-face {
+    font-family: BILLIEBOB;
+    src: url(/fonts/BILLIEBOB.ttf);
+}
+
+@font-face {
+    font-family: Galpon-Black;
+    src: url(/fonts/Galpon-Black.otf);
+}
+
+@font-face {
+    font-family: FontAwesome;
+    src: url(/fonts/FontAwesome.otf);
+}
+
 li{
     list-style-type: none;
 }
+
 .container {
     margin: auto auto;
     box-sizing: border-box;
@@ -25,7 +41,7 @@ li{
     margin-bottom: 40px;
 }
 
-.Square {
+.button {
     margin-bottom: 4px;
     border-width: 9px;
     border-color: rgb(126, 107, 93);
@@ -35,11 +51,13 @@ li{
     top: 0px;
     position: inherit;
     width: 97%;
-    min-height: 100px;
+    min-height: 1.5em;
     height: auto;
     text-align: center;
-    vertical-align: center;
-    font-size:42px;
+    font-size:52px;
     display: block;
+    font-family: BILLIEBOB;
+    padding-top: 2.5%;
     text-decoration: none;
+
 }

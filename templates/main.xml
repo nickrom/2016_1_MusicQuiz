@@ -2,10 +2,11 @@
 	<div class="container">
 		<div class="container_header"></div>
 		<div class="container_body">
-			<a href='#main'><img src="img/MusicQuiz.jpg" width="100%" height="130"></img></a>
-			<a href='#game' class="Square">Play</a>
-			<a href='#login'><img src="img/LogIn.jpg" width="100%" height="130"></img></a>
-			<a href='#scoreboard' class="Square">Scoreboard</a>
+			<a class="button" href='#'>MusicQuiz</a>
+			<a class="button" href='#game'>New game</a>
+			<a class="button" href='#login'>Log In</a>
+			<a class="button" href='#signup'>Sign Up</a>
+			<a class="button" href='#scoreboard'>Scoreboard</a>
 		</div>
     </div>
 </fest:template>

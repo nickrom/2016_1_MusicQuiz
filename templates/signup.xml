@@ -2,7 +2,7 @@
     <div class="container">
         <div class="container_header"></div>
         <div class="container_body">
-            <a href='#main' class="Square">Menu</a>
+            <a class="button" href='#main'><i class="fa fa-caret-left"></i>&nbsp&nbspBack</a>
         </div>
     </div>
 </fest:template>

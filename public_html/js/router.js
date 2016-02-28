@@ -2,12 +2,14 @@ define([
     'backbone',
     'views/main',
     'views/login',
+    'views/signup',
     'views/game',
     'views/scoreboard'
 ], function(
     Backbone,
     mainView,
     loginView,
+    signupView,
     gameView,
     scoreboardView
 ){
@@ -17,11 +19,12 @@ define([
             'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
             'login': 'loginAction',
+            'signup': 'signupAction',
             '*default': 'defaultActions'
         },
         defaultActions: function () {
             //console.log('default');
-            mainView.show();
+            mainView.show()
         },
         scoreboardAction: function () {
             //console.log('score')
@@ -34,6 +37,9 @@ define([
         loginAction: function () {
             //console.log('login')
             loginView.show()
+        },
+        signupAction: function () {
+            signupView.show()
         }
     });
 
