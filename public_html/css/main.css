@@ -1,3 +1,45 @@
 html {
-    background: url(/img/2.png)
+    background: #DCFEF4;
+    font-family: "Galpon Black";
+}
+li{
+    list-style-type: none;
+}
+.container {
+    margin: auto auto;
+    box-sizing: border-box;
+    min-width: 500px;
+    width: 45%;
+    display: table;
+    border-radius: 3px;
+}
+.container_header {
+    display: flex;
+    align-items: center;
+    height: 55px;
+    border-radius: 3px 3px 0px 0px;
+    overflow: hidden;
+}
+
+.container_body {
+    margin-bottom: 40px;
+}
+
+.Square {
+    margin-bottom: 4px;
+    border-width: 9px;
+    border-color: rgb(126, 107, 93);
+    border-style: solid;
+    background-color: rgb(249, 246, 192);
+    left: 0px;
+    top: 0px;
+    position: inherit;
+    width: 97%;
+    min-height: 100px;
+    height: auto;
+    text-align: center;
+    vertical-align: center;
+    font-size:42px;
+    display: block;
+    text-decoration: none;
 }

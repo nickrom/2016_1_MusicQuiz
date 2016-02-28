@@ -1,4 +1,16 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="scoreboard">
-    	<h1><a href='#main'>SCOREBOARD</a></h1></div>
+    <div class="container">
+        <div class="container_header"></div>
+        <div class="container_body">
+            <div class="Square">
+                <h2>Results</h2>
+                <ul>
+                    <li>1. Илья Рогов</li>
+                    <li>2. Киричик Данил</li>
+                    <li>3. Романов Никита</li>
+                </ul>
+                <a href='#main'>Menu</a>
+            </div>
+        </div>
+    </div>
 </fest:template>

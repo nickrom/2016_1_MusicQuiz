@@ -1,5 +1,10 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="login">
-    	<h1><a href='#main'>LOGIN</a></h1>
+    <div class="container">
+        <div class="container_header"></div>
+        <div class="container_body">
+            <a href='#login'><img src="img/LogIn.jpg" width="100%" height="130"></img></a>
+            <a href='#signup'><img src="img/SignUp.jpg" width="100%" height="130"></img></a>
+            <a href='#main' class="Square">Menu</a>
+        </div>
     </div>
 </fest:template>
