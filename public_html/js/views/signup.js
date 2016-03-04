@@ -1,10 +1,8 @@
-define([
-	'backbone',
-	'tmpl/signup'
-], function(
-	Backbone,
-	tmpl
-) {
+define(function (require) {
+
+	var Backbone = require('backbone'),
+		tmpl = require('tmpl/signup')
+
 	var signupView = Backbone.View.extend({
 		template: tmpl,
 

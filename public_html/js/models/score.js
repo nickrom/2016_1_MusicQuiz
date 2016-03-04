@@ -1,11 +1,16 @@
-define([
-    'backbone'
-], function(
-    Backbone
-){
+define(function(require){
 
-    var Model = Backbone.Model.extend({
+    var Backbone = require('backbone')
+
+    var ScoreboardModel = Backbone.Model.extend({
+
+    	default: {
+    		name: '',
+    		score: 0
+    	},
+
+    	initialize: function() {}
     });
 
-    return Model;
+    return ScoreboardModel;
 });

@@ -1,10 +1,8 @@
-define([
-	'backbone',
-	'tmpl/main'
-], function(
-	Backbone,
-	tmpl
-) {
+define(function (require) {
+
+	var Backbone = require('backbone'),
+		tmpl = require('tmpl/main')
+
 	var mainView = Backbone.View.extend({
 		template: tmpl,
 

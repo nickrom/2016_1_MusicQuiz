@@ -1,10 +1,8 @@
-define([
-	'backbone',
-	'tmpl/game'
-], function(
-	Backbone,
-	tmpl
-) {
+define(function (require) {
+
+	var Backbone = require('backbone'),
+		tmpl = require('tmpl/game')
+
 	var gameView = Backbone.View.extend({
 		template: tmpl,
 

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="container_header"></div>
         <div class="container_body">
-            <a class="button" href='#main'><i class="fa fa-caret-left"></i>&nbsp&nbspBack</a>
+            <a class="button" href='#main'><i class="fa fa-caret-left fa-lg"></i><fest:space/>Back</a>
         </div>
     </div>
 </fest:template>
