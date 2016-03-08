@@ -21,7 +21,7 @@ define(function (require) {
 		},
 
 		hide: function() {
-			this.$el.html('')
+			this.$el.hide()
 			return this;
 		}
 	})

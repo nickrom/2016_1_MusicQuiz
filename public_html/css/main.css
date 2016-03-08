@@ -8,60 +8,212 @@ html {
 }
 
 @font-face {
-    font-family: Galpon-Black;
-    src: url(/fonts/Galpon-Black.otf);
-}
-
-@font-face {
-    font-family: FontAwesome;
-    src: url(/fonts/FontAwesome.otf);
+    font-family: aleksandracregular;
+    src: url(/fonts/aleksandracregular.ttf);
 }
 
 li{
     list-style-type: none;
 }
 
-h2{
-    font-family: BILLIEBOB;
-}
-
-.container {
+.content__wrapper {
+    padding-top: 5%;
     margin: auto auto;
-    box-sizing: border-box;
-    min-width: 500px;
-    width: 45%;
-    display: table;
-    border-radius: 3px;
-}
-.container_header {
-    display: flex;
-    align-items: center;
-    height: 55px;
-    border-radius: 3px 3px 0px 0px;
-    overflow: hidden;
+    width: 40em;
+    display: block;
+    /*border: 4px double black;*/
+
 }
 
-.container_body {
-    margin-bottom: 40px;
-}
-
-.button {
-    margin-bottom: 4px;
-    border-width: 9px;
+.content__wrapper__logo {
+    padding-top: 2%;
+    background-color: rgb(249, 246, 192);
+    border-width: 0.1em;
     border-color: rgb(126, 107, 93);
     border-style: solid;
-    background-color: rgb(249, 246, 192);
+    border-radius: 1em;
+    box-shadow: -5px 4px 65px 0px rgba(0,0,0,0.31);
+    font-family: BILLIEBOB;
+    font-size: 5em;
+    text-align: center;
+    text-decoration: none;
+}
+
+.content__wrapper__logo__music {
+    color: #9F3ED5;
+}
+
+.content__wrapper__logo__quiz {
+    color: #9FEE00;
+}
+
+.content__wrapper__game-menu {
+    padding-top: 10%;
+    width: 30em;
+    margin: auto auto;
+}
+
+.content__wrapper__game-menu__button {
+    margin-bottom: 2%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -5px 4px 5px 0px rgba(0,0,0,0.31);
     left: 0px;
     top: 0px;
     position: inherit;
-    width: 97%;
-    min-height: 1.5em;
+    width: 100%;
     height: auto;
-    text-align: center;
-    font-size:52px;
+    font-size: 3.25em;
     display: block;
-    font-family: BILLIEBOB;
-    padding-top: 2.5%;
+    font-family: aleksandracregular;
+    color: rgb(0, 0, 0);
+    padding-top: 1%;
+    text-align: center;
     text-decoration: none;
-
 }
+
+.wrapper__sign-form {
+    width: 30em;
+    margin: 10% auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -5px 4px 5px 0px rgba(0,0,0,0.31);
+}
+
+.wrapper__sign-form__header {
+    font-family: aleksandracregular;
+    text-align: center;
+    display: block;
+    padding-top: 0.5em;
+    font-size: 3.5em;
+    color: black;
+}
+
+.sign-form-error {
+    height: 2em;
+    margin: 0.2em auto;
+    width: 75%;
+    text-align: center;
+    font-family: aleksandracregular;
+    font-size: 1em;
+    color: red;
+    display: block;
+    
+}
+
+.sign-form__element {
+    display: block;
+    margin: 1% auto;
+    height: 1.5em;
+    width: 75%;
+    border-radius: 0.1em;
+    border: rgba(0,0,0, 0.3) 0.05em solid;
+    font-family: aleksandracregular;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    width: 5em;
+    height: 2em;
+    line-height: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    color: rgb(0,0,0);
+    outline: none;
+    border: 1px solid rgba(0,0,0,.4);
+    border-top-color: rgba(0,0,0,.3);
+    border-radius: 2px;
+    box-shadow:
+        0 0 3px rgba(0,0,0,0) inset,
+        0 1px 1px 1px rgba(255,255,255,.2),
+        0 -1px 1px 1px rgba(0,0,0,0);
+    transition: .2s ease-in-out;
+    font-family: aleksandracregular;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.back-form {
+    margin-left: 20%;
+    background-color: #dcdcdc;
+    text-align: center;
+}
+
+.back-scoreboard {
+    margin: auto;
+    margin-top: 0.5em;
+    display: block;
+    background-color: #dcdcdc;
+    text-align: center;
+}
+
+.submit-form {
+    margin-left: 7%;
+    background-color: #9FEE00;
+    
+}
+
+.button:hover:not(:active) {
+  box-shadow:
+   0 0 3px rgba(0,0,0,0) inset,
+   0 1px 1px 1px rgba(0,255,255,.5),
+   0 -1px 1px 1px rgba(0,255,255,.5);
+}
+.button:active {
+  background: linear-gradient(rgb(250,250,250), rgb(235,235,235));
+  box-shadow:
+   0 0 3px rgba(0,0,0,.5) inset,
+   0 1px 1px 1px rgba(255,255,255,.4),
+   0 -1px 1px 1px rgba(0,0,0,.1);
+}
+
+.wrapper__scoreboard {
+    width: 40em;
+    margin: auto auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: -5px 4px 5px 0px rgba(0,0,0,0.31);
+    font-family: aleksandracregular;
+    padding-bottom: 0.5em; 
+}
+
+.wrapper__scoreboard__header {
+    display: block;
+    margin: auto auto;
+    text-align: center;
+    font-size: 3.25em;
+    padding-top: 0.3em;
+    padding-bottom: 0.1em;
+}
+
+.scoreboard__item {
+    display: block;
+    margin: auto auto;
+    text-align: center;
+    font-size: 2em;
+    padding-top: 0.3em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
