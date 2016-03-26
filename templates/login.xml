@@ -8,8 +8,8 @@
 			<span class="wrapper__sign-form__header">LOG IN</span>
 			<div class="sign-form-error"><span></span></div>
 			<form action="">
-                <input class="sign-form__element" type="email" maxlength="20" placeholder="LOGIN"/>
-                <input class="sign-form__element" type="password" maxlength="10" placeholder="PASSWORD"/>
+                <input class="sign-form__email" type="email" maxlength="20" placeholder="LOGIN"/>
+                <input class="sign-form__password" type="password" maxlength="10" placeholder="PASSWORD"/>
                 <a class="back-form button" type="back" href="#main"><i class="fa fa-caret-left fa-lg"></i><fest:space/>BACK</a>
                 <button class="submit-form button" type="submit">SIGN IN</button>
             </form>

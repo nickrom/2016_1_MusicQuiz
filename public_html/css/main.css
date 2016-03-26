@@ -99,7 +99,7 @@ li{
     
 }
 
-.sign-form__element {
+.sign-form__login, .sign-form__email, .sign-form__password, .sign-form__submit-password{
     display: block;
     margin: 1% auto;
     height: 1.5em;

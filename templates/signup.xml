@@ -8,11 +8,12 @@
 			<span class="wrapper__sign-form__header">SIGN UP</span>
 			<div class="sign-form-error"><span></span></div>
 			<form action="">
-                <input class="sign-form__element" type="email" maxlength="20" placeholder="LOGIN"/>
-                <input class="sign-form__element" type="password" maxlength="10" placeholder="PASSWORD"/>
-                <input class="sign-form__element" type="password" maxlength="10" placeholder="SUBMIT PASSWORD"/>
+				<input class="sign-form__login" type="login" minlenght="1" maxlength="20" placeholder="LOGIN"/>
+                <input class="sign-form__email" type="email" minlenght="1" maxlength="20" placeholder="EMAIL"/>
+                <input class="sign-form__password" type="password" minlenght="1" maxlength="15" placeholder="PASSWORD"/>
+                <input class="sign-form__submit-password" type="submit-password" maxlength="15" placeholder="SUBMIT PASSWORD"/>
                 <a class="back-form button" type="back" href="#main"><i class="fa fa-caret-left fa-lg"></i><fest:space/>BACK</a>
-                <button class="submit-form button" type="submit">SIGN IN</button>
+                <button class="submit-form button" type="submit">SIGN UP</button>
             </form>
 		</div>
     </div>

@@ -8,24 +8,6 @@ module.exports = function (grunt) {
             },
         },
 
-        watch: {
-            fest: {
-                files: 'templates/*.xml',
-                tasks: ['fest'],
-                options: {
-                    atBegin: true
-                }
-            },
-            
-        },
-        
-        concurrent: {
-            target:  ['watch', 'shell'],
-            options: {
-                logConcurrentOutput: true,
-            }
-        },
-
         fest: {
             templates: {
                 files: [{
@@ -42,6 +24,36 @@ module.exports = function (grunt) {
                         );
                     }
                 }
+            }
+        },
+
+
+
+        watch: {
+            fest: {
+                files: 'templates/*.xml',
+                tasks: ['fest'],
+                options: {
+                    atBegin: true
+                }
+            },
+
+        server: {
+                files: [
+                    'public_html/js/**/*.js',
+                    'public_html/css/**/*.css'
+                ],
+                options: {
+                    livereload: true
+                }
+            }
+            
+        },
+        
+        concurrent: {
+            target:  ['watch', 'shell'],
+            options: {
+                logConcurrentOutput: true,
             }
         }
 
