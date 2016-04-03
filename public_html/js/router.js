@@ -5,36 +5,47 @@ define(function(require){
         LoginView = require('views/login'),
         SignupView = require('views/signup'),
         GameView = require('views/game'),
-        ScoreboardView = require('views/scoreboard')
+        ScoreboardView = require('views/scoreboard'),
+        ViewManager = require('views/viewManager')
     var $page = $('#page');
+
+    _.each([MainView,
+        GameView,
+        ScoreboardView,        
+        LoginView,
+        SignupView], function(view) {
+        ViewManager.addView(view);
+    });
+
     var Router = Backbone.Router.extend({
         routes: {
-            'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
+            'scoreboard': 'scoreboardAction',
             'login': 'loginAction',
             'signup': 'signupAction',
             '*default': 'defaultActions'
         },
+
         defaultActions: function () {
+            //$page.html(MainView.render().el)
+            this.navigate('main')
             MainView.show()
         },
         scoreboardAction: function () {
-            //var scoreboard = new scoreboardView()
-            //$page.append(scoreboardView.render().$el)
+           // $page.html(ScoreboardView.render().el)
             ScoreboardView.show()
         },
         gameAction: function () {
+          //  $page.html(GameView.render().el)
             GameView.show()
-            //$page.append(GameView.render().$el)
         },
         loginAction: function () {
+          //  $page.html(LoginView.render().el)
             LoginView.show()
-            //LoginView.show()
-            //$page.append(LoginView.render().$el)
         },
         signupAction: function () {
+          //  $page.html(SignupView.render().el)
             SignupView.show()
-            //$page.append(SignupView.render().$el)
         }
     });
 

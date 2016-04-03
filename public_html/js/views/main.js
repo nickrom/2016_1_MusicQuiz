@@ -7,7 +7,7 @@ define(function (require) {
 		template: tmpl,
 
 		initialize: function() {
-			//TODO
+			this.render()
 		},
 
 		render: function() {
@@ -15,16 +15,15 @@ define(function (require) {
 			return this;
 		},
 
-		show: function() {
-			$('#page').html(this.render().el);
-			return this;
-		},
+		show: function () {
+            this.trigger('show');
+            this.$el.show();
+        },
 
 		hide: function() {
 			this.$el.hide()
-			return this;
 		}
 	})
 
-	return new mainView()
-})
+	return new mainView();
+});

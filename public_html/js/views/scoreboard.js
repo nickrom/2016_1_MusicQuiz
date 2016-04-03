@@ -64,17 +64,16 @@ define(function (require) {
 			return this
 		},
 
-		show: function() {
-			$('#page').html(this.render().el);
-			return this;
-		},
+		show: function () {
+            this.trigger('show');
+            this.$el.show();
+        },
 
 		hide: function() {
-			this.$el.html('')
-			return this;
+			this.$el.hide()
 		}
 	})
 
 	return new scoreboardView()
 
-})
+});

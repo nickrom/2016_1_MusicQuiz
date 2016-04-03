@@ -5,8 +5,8 @@ define(function(require){
     var ScoreboardModel = Backbone.Model.extend({
 
     	default: {
-    		name: '',
-    		score: 0
+    		'name': '',
+    		'score': 0
     	},
 
     	initialize: function() {}

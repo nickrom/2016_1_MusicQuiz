@@ -7,24 +7,23 @@ define(function (require) {
 		template: tmpl,
 
 		initialize: function() {
-			//TODO
+			this.render()
 		},
 
 		render: function() {
-			this.$el.html(this.template)
-			return this;
+			this.$el.html(this.template())
+			return this
 		},
 
-		show: function() {
-			$('#page').html(this.render().el);
-			return this;
-		},
+		show: function () {
+            this.trigger('show');
+            this.$el.show();
+        },
 
 		hide: function() {
-			this.$el.html('')
-			return this;
+			this.$el.hide()
 		}
 	})
 
 	return new loginView()
-})
+});
