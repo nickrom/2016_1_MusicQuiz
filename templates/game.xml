@@ -8,14 +8,22 @@
         		<img class="game__avatar"/>
         		<span class="game__nickmane"></span>
         	</div>
-        	<div class="song__name"><span>1</span>
+        	<div class="song__name">
+                <span>1</span>
         	</div>
-        	<div class="song__name"><span>2</span>
+        	<div class="song__name">
+                <span>2</span>
         	</div>
-        	<div class="song__name"><span>3</span>
+        	<div class="song__name">
+                <span>3</span>
         	</div>
-        	<div class="song__name"><span>4</span>
+        	<div class="song__name">
+                <span>4</span>
         	</div>
-            <a class="back-form button" type="back" href="#main"><i class="fa fa-caret-left fa-lg"></i><fest:space/>BACK</a>
+            <a class="back-form button" type="back" href="#main">
+                <i class="fa fa-caret-left fa-lg"></i>
+                <fest:space/>
+                BACK
+            </a>
         </div>
 </fest:template>
