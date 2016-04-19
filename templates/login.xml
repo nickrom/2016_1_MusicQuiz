@@ -8,17 +8,15 @@
 				Quiz
 			</span>
 		</div>
-		<div class="wrapper__sign-form">
+		<div class="wrapper__login-form">
 			<span class="wrapper__sign-form__header">
 				LOG IN
 			</span>
-			<div class="sign-form-error">
-				<span></span>
-			</div>
+			<div class="sign-form-error"></div>
 			<form action="">
                 <input class="sign-form__email" type="email" maxlength="20" placeholder="LOGIN"/>
                 <input class="sign-form__password" type="password" maxlength="10" placeholder="PASSWORD"/>
-                <a class="back-form button" type="back" href="#main">
+                <a class="back-form button" type="back" href="#menu">
                 	<i class="fa fa-caret-left fa-lg"></i>
                 	<fest:space/>
                 	BACK
