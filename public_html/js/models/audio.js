@@ -8,7 +8,7 @@ define(function(require){
 
         getAudio: function() {
             $.ajax({
-                url: "/api/user/stream/",
+                url: "/api/music/",
                 type: "GET",
                 async: false,
                 dataType: "audio/mpeg",
@@ -27,7 +27,7 @@ define(function(require){
                 dataType: 'json',
                 success: function(resp) {
                     /*JSON 4 ответа первый правильный*/
-                    
+
                 }
 
             })

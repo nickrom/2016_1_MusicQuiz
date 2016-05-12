@@ -3,7 +3,7 @@ define(function (require) {
 	var Backbone = require('backbone'),
 		tmpl = require('tmpl/game'),
 		Audio = require('models/audio'),
-		WaveSurfer = require('lib/wavesurfer');
+		WaveSurfer = require('wavesurfer');
 
 
 	var gameView = Backbone.View.extend({
@@ -14,13 +14,6 @@ define(function (require) {
 		},
 		initialize: function() {
 			this.render()
-			/*var wavesurfer = WaveSurfer.create({
-			    container: '#waveform',
-			    waveColor: 'violet',
-			    progressColor: 'purple'
-
-			});
-			wavesurfer.load('/api/user/stream/')*/
 		},
 
 		render: function() {
@@ -37,11 +30,28 @@ define(function (require) {
 			this.$el.hide()
 		},
 
-		playAudio: function() {
-			//var audio = new Audio()
-			$('#audio')[0].play()
-			//audio.getAudio()
-		},
+		playAudio: _.once(function() {
+
+			var wavesurfer = WaveSurfer.create({
+			    container: '#waveform',
+			    waveColor: '#000066',
+			    progressColor: '#000066',
+			    fillParent: true,
+			    height: 96,
+			    hideScrollbar: true,
+			    barWidth: 1,
+			    pixelRatio: 1,
+			    loopSelection: false,
+  				backend: 'MediaElement'/*,
+			    cursorColor : 'transparent'*/
+			});
+
+			wavesurfer.on('ready', function () {
+			    wavesurfer.play();
+			});
+			wavesurfer.load('/api/music/1');
+			
+		}),
 
 		stopAudio: function() {
 			$('#audio')[0].stop()

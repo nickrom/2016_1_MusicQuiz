@@ -1,19 +1,26 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
         <div class="container__game">
-            <div id="waveform">
+            <div class="waveform__wrapper">
+                <div id="waveform">
+                </div>
+                <div id="equalizer"></div>
             </div>
             <!--<div class="players__info">
             	<div class="player__info">
             		<img class="game__avatar" src="/img/people.svg"/>
-            		<span class="game__nickmane">NICKNAME</span>
+                    <div class="game__nickmane">
+            		  <span>NICKNAME</span>
+                    </div>
             	</div>
             	<div class="opponent__player__info">
             		<img class="opponent__game__avatar" src="/img/people.svg"/>
-            		<span class="game__nickmane">OPPONENT</span>
-            	</div>-->
-           <!-- </div>
+                    <div class="opponent__game__nickmane">
+            		  <span>OPPONENT</span>
+                    </div>
+            	</div>
+            </div>-->
 
-        	<div class="song_name">
+        	<!--<div class="song_name">
                 <span>1</span>
         	</div>
         	<div class="song_name">
@@ -30,8 +37,15 @@
                 <fest:space/>
                 BACK
             </a>-->
+            <div class="song__names">
+                <div class="song__button__1">1
+                </div>
+                <div class="song__button__2">2
+                </div>
+                <div class="song__button__3">3
+                </div>
+                <div class="song__button__4">4
+                </div>
+            </div>
         </div>
-        <audio id="audio">
-            <source src="/api/user/stream" type="audio/mpeg"/>
-        </audio>
 </fest:template>
