@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <fest:template xmlns:fest="http://fest.mail.ru">
         <div class="container__game">
             <div class="waveform__wrapper">
@@ -49,3 +50,7 @@
             </div>
         </div>
 </fest:template>
+=======
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+</fest:template>
+>>>>>>> tp/v4

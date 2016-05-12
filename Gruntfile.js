@@ -2,10 +2,12 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
+
         shell: {
             dev: {
                 command: 'node server.js'
             },
+
         },
 
         fest: {
@@ -56,6 +58,7 @@ module.exports = function (grunt) {
                 tasks: ['sass']
             },
 
+
             server: {
                 files: [
                     'public_html/js/**/*.js',
@@ -90,8 +93,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-requirejs');
     grunt.loadNpmTasks('grunt-sass');
 
+
     // результат команды grunt
     grunt.registerTask('test', ['qunit:all']);
     grunt.registerTask('default', ['concurrent']);
-    
+
 };

@@ -1,5 +1,9 @@
 /** vim: et:ts=4:sw=4:sts=4
+<<<<<<< HEAD
  * @license RequireJS 2.1.22 Copyright (c) 2010-2015, The Dojo Foundation All Rights Reserved.
+=======
+ * @license RequireJS 2.1.10 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.
+>>>>>>> tp/v4
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/requirejs for details
  */
@@ -12,7 +16,11 @@ var requirejs, require, define;
 (function (global) {
     var req, s, head, baseElement, dataMain, src,
         interactiveScript, currentlyAddingScript, mainScript, subPath,
+<<<<<<< HEAD
         version = '2.1.22',
+=======
+        version = '2.1.10',
+>>>>>>> tp/v4
         commentRegExp = /(\/\*([\s\S]*?)\*\/|([^:]|^)\/\/(.*)$)/mg,
         cjsRequireRegExp = /[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g,
         jsSuffixRegExp = /\.js$/,
@@ -21,6 +29,10 @@ var requirejs, require, define;
         ostring = op.toString,
         hasOwn = op.hasOwnProperty,
         ap = Array.prototype,
+<<<<<<< HEAD
+=======
+        apsp = ap.splice,
+>>>>>>> tp/v4
         isBrowser = !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document),
         isWebWorker = !isBrowser && typeof importScripts !== 'undefined',
         //PS3 indicates loaded and complete, but need to wait for complete
@@ -140,7 +152,11 @@ var requirejs, require, define;
         throw err;
     }
 
+<<<<<<< HEAD
     //Allow getting a global that is expressed in
+=======
+    //Allow getting a global that expressed in
+>>>>>>> tp/v4
     //dot notation, like 'a.b.c'.
     function getGlobal(value) {
         if (!value) {
@@ -179,7 +195,11 @@ var requirejs, require, define;
 
     if (typeof requirejs !== 'undefined') {
         if (isFunction(requirejs)) {
+<<<<<<< HEAD
             //Do not overwrite an existing requirejs instance.
+=======
+            //Do not overwrite and existing requirejs instance.
+>>>>>>> tp/v4
             return;
         }
         cfg = requirejs;
@@ -231,13 +251,19 @@ var requirejs, require, define;
          * @param {Array} ary the array of path segments.
          */
         function trimDots(ary) {
+<<<<<<< HEAD
             var i, part;
             for (i = 0; i < ary.length; i++) {
+=======
+            var i, part, length = ary.length;
+            for (i = 0; i < length; i++) {
+>>>>>>> tp/v4
                 part = ary[i];
                 if (part === '.') {
                     ary.splice(i, 1);
                     i -= 1;
                 } else if (part === '..') {
+<<<<<<< HEAD
                     // If at the start, or previous value is still ..,
                     // keep them so that when converted to a path it may
                     // still work when converted to a path, even though
@@ -245,6 +271,16 @@ var requirejs, require, define;
                     // releases, may be better to just kick out an error.
                     if (i === 0 || (i === 1 && ary[2] === '..') || ary[i - 1] === '..') {
                         continue;
+=======
+                    if (i === 1 && (ary[2] === '..' || ary[0] === '..')) {
+                        //End of the line. Keep at least one non-dot
+                        //path segment at the front so it can be mapped
+                        //correctly to disk. Otherwise, there is likely
+                        //no path mapping for a path starting with '..'.
+                        //This can still fail, but catches the most reasonable
+                        //uses of ..
+                        break;
+>>>>>>> tp/v4
                     } else if (i > 0) {
                         ary.splice(i - 1, 2);
                         i -= 2;
@@ -265,12 +301,19 @@ var requirejs, require, define;
          */
         function normalize(name, baseName, applyMap) {
             var pkgMain, mapValue, nameParts, i, j, nameSegment, lastIndex,
+<<<<<<< HEAD
                 foundMap, foundI, foundStarMap, starI, normalizedBaseParts,
                 baseParts = (baseName && baseName.split('/')),
+=======
+                foundMap, foundI, foundStarMap, starI,
+                baseParts = baseName && baseName.split('/'),
+                normalizedBaseParts = baseParts,
+>>>>>>> tp/v4
                 map = config.map,
                 starMap = map && map['*'];
 
             //Adjust any relative paths.
+<<<<<<< HEAD
             if (name) {
                 name = name.split('/');
                 lastIndex = name.length - 1;
@@ -285,17 +328,46 @@ var requirejs, require, define;
 
                 // Starts with a '.' so need the baseName
                 if (name[0].charAt(0) === '.' && baseParts) {
+=======
+            if (name && name.charAt(0) === '.') {
+                //If have a base name, try to normalize against it,
+                //otherwise, assume it is a top-level require that will
+                //be relative to baseUrl in the end.
+                if (baseName) {
+>>>>>>> tp/v4
                     //Convert baseName to array, and lop off the last part,
                     //so that . matches that 'directory' and not name of the baseName's
                     //module. For instance, baseName of 'one/two/three', maps to
                     //'one/two/three.js', but we want the directory, 'one/two' for
                     //this normalization.
                     normalizedBaseParts = baseParts.slice(0, baseParts.length - 1);
+<<<<<<< HEAD
                     name = normalizedBaseParts.concat(name);
                 }
 
                 trimDots(name);
                 name = name.join('/');
+=======
+                    name = name.split('/');
+                    lastIndex = name.length - 1;
+
+                    // If wanting node ID compatibility, strip .js from end
+                    // of IDs. Have to do this here, and not in nameToUrl
+                    // because node allows either .js or non .js to map
+                    // to same file.
+                    if (config.nodeIdCompat && jsSuffixRegExp.test(name[lastIndex])) {
+                        name[lastIndex] = name[lastIndex].replace(jsSuffixRegExp, '');
+                    }
+
+                    name = normalizedBaseParts.concat(name);
+                    trimDots(name);
+                    name = name.join('/');
+                } else if (name.indexOf('./') === 0) {
+                    // No baseName, so this is ID is resolved relative
+                    // to baseUrl, pull off the leading dot.
+                    name = name.substring(2);
+                }
+>>>>>>> tp/v4
             }
 
             //Apply map config if available.
@@ -371,6 +443,7 @@ var requirejs, require, define;
                 //retry
                 pathConfig.shift();
                 context.require.undef(id);
+<<<<<<< HEAD
 
                 //Custom require that does not do map translation, since
                 //ID is "absolute", already mapped/resolved.
@@ -378,6 +451,9 @@ var requirejs, require, define;
                     skipMap: true
                 })([id]);
 
+=======
+                context.require([id]);
+>>>>>>> tp/v4
                 return true;
             }
         }
@@ -443,6 +519,7 @@ var requirejs, require, define;
                             return normalize(name, parentName, applyMap);
                         });
                     } else {
+<<<<<<< HEAD
                         // If nested plugin references, then do not try to
                         // normalize, as it will not normalize correctly. This
                         // places a restriction on resourceIds, and the longer
@@ -453,6 +530,9 @@ var requirejs, require, define;
                         normalizedName = name.indexOf('!') === -1 ?
                                          normalize(name, parentName, applyMap) :
                                          name;
+=======
+                        normalizedName = normalize(name, parentName, applyMap);
+>>>>>>> tp/v4
                     }
                 } else {
                     //A regular module.
@@ -553,6 +633,7 @@ var requirejs, require, define;
         function takeGlobalQueue() {
             //Push all the globalDefQueue items into the context's defQueue
             if (globalDefQueue.length) {
+<<<<<<< HEAD
                 each(globalDefQueue, function(queueItem) {
                     var id = queueItem[0];
                     if (typeof id === 'string') {
@@ -560,6 +641,13 @@ var requirejs, require, define;
                     }
                     defQueue.push(queueItem);
                 });
+=======
+                //Array splice in the values since the context code has a
+                //local var ref to defQueue, so cannot just reassign the one
+                //on context.
+                apsp.apply(defQueue,
+                           [defQueue.length, 0].concat(globalDefQueue));
+>>>>>>> tp/v4
                 globalDefQueue = [];
             }
         }
@@ -576,7 +664,11 @@ var requirejs, require, define;
                 mod.usingExports = true;
                 if (mod.map.isDefine) {
                     if (mod.exports) {
+<<<<<<< HEAD
                         return (defined[mod.map.id] = mod.exports);
+=======
+                        return mod.exports;
+>>>>>>> tp/v4
                     } else {
                         return (mod.exports = defined[mod.map.id] = {});
                     }
@@ -590,9 +682,15 @@ var requirejs, require, define;
                         id: mod.map.id,
                         uri: mod.map.url,
                         config: function () {
+<<<<<<< HEAD
                             return getOwn(config.config, mod.map.id) || {};
                         },
                         exports: mod.exports || (mod.exports = {})
+=======
+                            return  getOwn(config.config, mod.map.id) || {};
+                        },
+                        exports: handlers.exports(mod)
+>>>>>>> tp/v4
                     });
                 }
             }
@@ -846,10 +944,14 @@ var requirejs, require, define;
                     factory = this.factory;
 
                 if (!this.inited) {
+<<<<<<< HEAD
                     // Only fetch if not already in the defQueue.
                     if (!hasProp(context.defQueueMap, id)) {
                         this.fetch();
                     }
+=======
+                    this.fetch();
+>>>>>>> tp/v4
                 } else if (this.error) {
                     this.emit('error', this.error);
                 } else if (!this.defining) {
@@ -861,10 +963,28 @@ var requirejs, require, define;
 
                     if (this.depCount < 1 && !this.defined) {
                         if (isFunction(factory)) {
+<<<<<<< HEAD
                             try {
                                 exports = context.execCb(id, factory, depExports, exports);
                             } catch (e) {
                                 err = e;
+=======
+                            //If there is an error listener, favor passing
+                            //to that instead of throwing an error. However,
+                            //only do it for define()'d  modules. require
+                            //errbacks should not be called for failures in
+                            //their callbacks (#699). However if a global
+                            //onError is set, use that.
+                            if ((this.events.error && this.map.isDefine) ||
+                                req.onError !== defaultOnError) {
+                                try {
+                                    exports = context.execCb(id, factory, depExports, exports);
+                                } catch (e) {
+                                    err = e;
+                                }
+                            } else {
+                                exports = context.execCb(id, factory, depExports, exports);
+>>>>>>> tp/v4
                             }
 
                             // Favor return value over exports. If node/cjs in play,
@@ -881,6 +1001,7 @@ var requirejs, require, define;
                             }
 
                             if (err) {
+<<<<<<< HEAD
                                 // If there is an error listener, favor passing
                                 // to that instead of throwing an error. However,
                                 // only do it for define()'d  modules. require
@@ -905,6 +1026,14 @@ var requirejs, require, define;
                                     req.onError(err);
                                 }
                             }
+=======
+                                err.requireMap = this.map;
+                                err.requireModules = this.map.isDefine ? [this.map.id] : null;
+                                err.requireType = this.map.isDefine ? 'define' : 'require';
+                                return onError((this.error = err));
+                            }
+
+>>>>>>> tp/v4
                         } else {
                             //Just a literal value
                             exports = factory;
@@ -916,11 +1045,15 @@ var requirejs, require, define;
                             defined[id] = exports;
 
                             if (req.onResourceLoad) {
+<<<<<<< HEAD
                                 var resLoadMaps = [];
                                 each(this.depMaps, function (depMap) {
                                     resLoadMaps.push(depMap.normalizedMap || depMap);
                                 });
                                 req.onResourceLoad(context, this.map, resLoadMaps);
+=======
+                                req.onResourceLoad(context, this.map, this.depMaps);
+>>>>>>> tp/v4
                             }
                         }
 
@@ -979,7 +1112,10 @@ var requirejs, require, define;
                                                       this.map.parentMap);
                         on(normalizedMap,
                             'defined', bind(this, function (value) {
+<<<<<<< HEAD
                                 this.map.normalizedMap = normalizedMap;
+=======
+>>>>>>> tp/v4
                                 this.init([], function () { return value; }, null, {
                                     enabled: true,
                                     ignore: true
@@ -1133,15 +1269,19 @@ var requirejs, require, define;
                         this.depCount += 1;
 
                         on(depMap, 'defined', bind(this, function (depExports) {
+<<<<<<< HEAD
                             if (this.undefed) {
                                 return;
                             }
+=======
+>>>>>>> tp/v4
                             this.defineDep(i, depExports);
                             this.check();
                         }));
 
                         if (this.errback) {
                             on(depMap, 'error', bind(this, this.errback));
+<<<<<<< HEAD
                         } else if (this.events.error) {
                             // No direct errback on this module, but something
                             // else is listening for errors, so be sure to
@@ -1149,6 +1289,8 @@ var requirejs, require, define;
                             on(depMap, 'error', bind(this, function(err) {
                                 this.emit('error', err);
                             }));
+=======
+>>>>>>> tp/v4
                         }
                     }
 
@@ -1252,15 +1394,22 @@ var requirejs, require, define;
             while (defQueue.length) {
                 args = defQueue.shift();
                 if (args[0] === null) {
+<<<<<<< HEAD
                     return onError(makeError('mismatch', 'Mismatched anonymous define() module: ' +
                         args[args.length - 1]));
+=======
+                    return onError(makeError('mismatch', 'Mismatched anonymous define() module: ' + args[args.length - 1]));
+>>>>>>> tp/v4
                 } else {
                     //args are id, deps, factory. Should be normalized by the
                     //define() function.
                     callGetModule(args);
                 }
             }
+<<<<<<< HEAD
             context.defQueueMap = {};
+=======
+>>>>>>> tp/v4
         }
 
         context = {
@@ -1270,7 +1419,10 @@ var requirejs, require, define;
             defined: defined,
             urlFetched: urlFetched,
             defQueue: defQueue,
+<<<<<<< HEAD
             defQueueMap: {},
+=======
+>>>>>>> tp/v4
             Module: Module,
             makeModuleMap: makeModuleMap,
             nextTick: req.nextTick,
@@ -1342,7 +1494,11 @@ var requirejs, require, define;
                     each(cfg.packages, function (pkgObj) {
                         var location, name;
 
+<<<<<<< HEAD
                         pkgObj = typeof pkgObj === 'string' ? {name: pkgObj} : pkgObj;
+=======
+                        pkgObj = typeof pkgObj === 'string' ? { name: pkgObj } : pkgObj;
+>>>>>>> tp/v4
 
                         name = pkgObj.name;
                         location = pkgObj.location;
@@ -1369,7 +1525,11 @@ var requirejs, require, define;
                     //late to modify them, and ignore unnormalized ones
                     //since they are transient.
                     if (!mod.inited && !mod.map.unnormalized) {
+<<<<<<< HEAD
                         mod.map = makeModuleMap(id, null, true);
+=======
+                        mod.map = makeModuleMap(id);
+>>>>>>> tp/v4
                     }
                 });
 
@@ -1505,7 +1665,10 @@ var requirejs, require, define;
                         var map = makeModuleMap(id, relMap, true),
                             mod = getOwn(registry, id);
 
+<<<<<<< HEAD
                         mod.undefed = true;
+=======
+>>>>>>> tp/v4
                         removeScript(id);
 
                         delete defined[id];
@@ -1516,11 +1679,18 @@ var requirejs, require, define;
                         //in array so that the splices do not
                         //mess up the iteration.
                         eachReverse(defQueue, function(args, i) {
+<<<<<<< HEAD
                             if (args[0] === id) {
                                 defQueue.splice(i, 1);
                             }
                         });
                         delete context.defQueueMap[id];
+=======
+                            if(args[0] === id) {
+                                defQueue.splice(i, 1);
+                            }
+                        });
+>>>>>>> tp/v4
 
                         if (mod) {
                             //Hold on to listeners in case the
@@ -1541,7 +1711,11 @@ var requirejs, require, define;
             /**
              * Called to enable a module if it is still in the registry
              * awaiting enablement. A second arg, parent, the parent module,
+<<<<<<< HEAD
              * is passed in for context, when this method is overridden by
+=======
+             * is passed in for context, when this method is overriden by
+>>>>>>> tp/v4
              * the optimizer. Not shown here to keep code compact.
              */
             enable: function (depMap) {
@@ -1582,7 +1756,10 @@ var requirejs, require, define;
 
                     callGetModule(args);
                 }
+<<<<<<< HEAD
                 context.defQueueMap = {};
+=======
+>>>>>>> tp/v4
 
                 //Do this after the cycle of callGetModule in case the result
                 //of those calls/init calls changes the registry.
@@ -1718,6 +1895,7 @@ var requirejs, require, define;
             onScriptError: function (evt) {
                 var data = getScriptData(evt);
                 if (!hasPathFallback(data.id)) {
+<<<<<<< HEAD
                     var parents = [];
                     eachProp(registry, function(value, key) {
                         if (key.indexOf('_@r') !== 0) {
@@ -1733,6 +1911,9 @@ var requirejs, require, define;
                                              (parents.length ?
                                              '", needed by: ' + parents.join(', ') :
                                              '"'), evt, [data.id]));
+=======
+                    return onError(makeError('scripterror', 'Script error for: ' + data.id, evt, [data.id]));
+>>>>>>> tp/v4
                 }
             }
         };
@@ -1891,9 +2072,12 @@ var requirejs, require, define;
         if (isBrowser) {
             //In the browser so use a script tag
             node = req.createNode(config, moduleName, url);
+<<<<<<< HEAD
             if (config.onNodeCreated) {
                 config.onNodeCreated(node, config, moduleName, url);
             }
+=======
+>>>>>>> tp/v4
 
             node.setAttribute('data-requirecontext', context.contextName);
             node.setAttribute('data-requiremodule', moduleName);
@@ -1959,9 +2143,15 @@ var requirejs, require, define;
                 //In a web worker, use importScripts. This is not a very
                 //efficient use of importScripts, importScripts will block until
                 //its script is downloaded and evaluated. However, if web workers
+<<<<<<< HEAD
                 //are in play, the expectation is that a build has been done so
                 //that only one script needs to be loaded anyway. This may need
                 //to be reevaluated if other use cases become common.
+=======
+                //are in play, the expectation that a build has been done so that
+                //only one script needs to be loaded anyway. This may need to be
+                //reevaluated if other use cases become common.
+>>>>>>> tp/v4
                 importScripts(url);
 
                 //Account for anonymous modules
@@ -2022,7 +2212,11 @@ var requirejs, require, define;
                 //like a module name.
                 mainScript = mainScript.replace(jsSuffixRegExp, '');
 
+<<<<<<< HEAD
                 //If mainScript is still a path, fall back to dataMain
+=======
+                 //If mainScript is still a path, fall back to dataMain
+>>>>>>> tp/v4
                 if (req.jsExtRegExp.test(mainScript)) {
                     mainScript = dataMain;
                 }
@@ -2101,18 +2295,26 @@ var requirejs, require, define;
         //where the module name is not known until the script onload event
         //occurs. If no context, use the global queue, and get it processed
         //in the onscript load callback.
+<<<<<<< HEAD
         if (context) {
             context.defQueue.push([name, deps, callback]);
             context.defQueueMap[name] = true;
         } else {
             globalDefQueue.push([name, deps, callback]);
         }
+=======
+        (context ? context.defQueue : globalDefQueue).push([name, deps, callback]);
+>>>>>>> tp/v4
     };
 
     define.amd = {
         jQuery: true
     };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> tp/v4
     /**
      * Executes the text. Normally just uses eval, but can be modified
      * to use a better, environment-specific call. Only used for transpiling

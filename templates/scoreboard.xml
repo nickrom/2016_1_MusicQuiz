@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <div class="content__wrapper">
         <div class="wrapper__scoreboard">
@@ -27,3 +28,7 @@
         </div>
     </div>
 </fest:template>
+=======
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+</fest:template>
+>>>>>>> tp/v4
