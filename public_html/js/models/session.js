@@ -1,103 +1,96 @@
 define(function(require){
 
-    var Backbone = require('backbone')
-    var $ = require('jquery')
-    var User = require('models/user')
+    var Backbone = require('backbone');
+    var $ = require('jquery');
 
     var Session = Backbone.Model.extend({
         defaults: {
-            id: '',
-            username: '',
-            score: 0,
     		authorized: false
         },
-    	
-    	initialize: function() {
-        },
 
-        login: function (email, password) {
-
-            $.ajax({
-                type: 'PUT',
-                url: '/api/session/',
-                data: JSON.stringify({
-                    'email': email,
-                    'password': password
-                }),
-                async: false,
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function (resp) {
-                    this.set('id', resp.id)
-                    this.set('authorized', true)
-                    this.userData()
-                    this.trigger('login')
-                }.bind(this),
-                error: function () {
-                    this.trigger('formError', 'Ошибка! Неверный логин и/или пароль!')
-                }.bind(this)
-            })
-        },
-
-        logout: function () {
-            $.ajax({
-                type: 'DELETE',
-                url: '/api/session/',
-                dataType: 'json',
-                contentType: 'application/json',
-                success: function () {
-                    this.set('authorized', false)
-                }
-            })
-        },
-
-        signup: function (login, email, password) {
-            $.ajax({
-                type: 'PUT',
-                url: '/api/user',
-                dataType: 'json',
-                async: false,
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    'login': login,
-                    'email': email,
-                    'password': password
-                }),
-                success: function () {
-                    this.login(email, password)
-                }.bind(this),
-                error: function () {
-                    this.trigger('formError', 'Ошибка! Данная почта уже используется!')
-                }.bind(this)
-            })
-        },
+    	url: "/api/session/",
 
         isAuthorized: function() {
-            return this.get('authorized');
+            return !!this.get('auth');
         },
 
-        userData: function() {
-            var self = this;
-            var response;
-            $.ajax({
-                type: 'GET',
-                url: '/api/user/' + this.id,
-                async: false,
-                dataType: 'json',
-                success: function(resp) {
-                    console.log(resp)
-                    this.set('username', resp.login)
-                    console.log(this.get('username'))
-                }.bind(this),
-                error: function(resp){
-                }.bind(this)
-            }).done(function(){
+        initialize: function() {},
 
-            })
+        sync: function (method, model, options) {
+            if (method === "create") {
+                method = "update";
+            }
+            options || (options = {});
+            options.url = this.url;
+            return Backbone.sync.apply(this, arguments)
+        },
+
+        validate: function(attrs, options) {
+
+            emailValidator = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+            if($.trim(attrs.email) === "" || !emailValidator.test($.trim(attrs.email))) {
+                var error = "Ошибка: невалидный e-mail";
+                return error;
+            }
+            $.trim(attrs.password);
+
+            if(attrs.password.length < 6) {
+                var error = "Ошибка: невалидный пароль";
+                return error;
+            }
+
+        },
+
+        check: function() {
+            this.set('id', null);
+            this.fetch({
+                success: (function(obj, result) {
+                    this.set('auth', true);
+                    this.trigger('auth', {
+                        result: true,
+                        id: result.id
+                    });
+                }).bind(this),
+                error: (function(obj, result) {
+                    this.set('auth', false);
+                }).bind(this)
+            });
+        },
+
+        tryLogin: function(email, password) {
+            this.save({
+                email: email,
+                password: password
+            }, {
+                success: (function(obj, result) {
+                    this.set('auth', true);
+                    this.trigger('auth', {
+                        result: true,
+                        id: result.id
+                    });
+                }).bind(this),
+                error: (function(obj, result) {
+                    this.set('auth', false);
+                    this.trigger('auth', {
+                        result: false,
+                        error: 'Ошибка! Неверный логин и/или пароль!'
+                    });
+                }).bind(this)
+            });
+        },
+
+        logout: function() {
+            this.destroy({
+                success: (function(data) {
+                    this.set('auth', false);
+                    //this.trigger('logout');
+                }).bind(this)
+            });
         }
-    })
 
-        return Session
+    });
+
+        return Session;
 
     });
 

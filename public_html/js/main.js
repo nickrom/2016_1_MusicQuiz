@@ -1,5 +1,5 @@
 require.config({
-    urlArgs: "_=" + (new Date()).getTime(),
+    urlArgs: "v=" + (new Date()).getTime(),
     baseUrl: "js",
     paths: {
         underscore: "lib/underscore",
@@ -21,13 +21,9 @@ require.config({
     }
 });
 
-define([
-    'backbone',
-    'router'
-], function(
-    Backbone,
-    router,
-    apiSync
-){
+define(function(require) {
+    var Backbone = require('backbone'),
+        router = require('router'),
+        app = require('app');
     Backbone.history.start();
-});
+})

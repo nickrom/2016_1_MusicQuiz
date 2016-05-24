@@ -1,25 +1,32 @@
 define(function (require) {
 
 	var Backbone = require('backbone'),
-		Tmpl = require('tmpl/signup'),
+		tmpl = require('tmpl/signup'),
 		User = require('models/user'),
-		Session = require('models/session'),
-		Client = require('models/client');
+		app = require('app');
 
 
 	var SignupView = Backbone.View.extend({
 		events: {
-			"submit ": "trySignup",
+			"submit ": "trySignup"/*,
 			"click #pop-up": "popup",
-			"change input[type=file][class=upload-pic]": "photo"
+			"change input[type=file][class=upload-pic]": "photo"*/
 		},
 
-		template: Tmpl,
+		template: tmpl,
 		model: User,
+		expectAuth: false,
 
 		initialize: function() {
+			this.template = tmpl;
 			this.render();
-			this.listenTo(Client.getSession(), 'formError', this.showError);
+			this.listenTo(app.getSession(), 'formError', this.showError);
+			this.inputs = {
+				'login': this.$el.find('.sign-form__login'),
+		        'email': this.$el.find('.sign-form__email'),
+		        'password': this.$el.find('.sign-form__password'),
+		        'submitPassword': this.$el.find('.sign-form__submit-password')
+			}
 		},
 
 		render: function() {
@@ -30,40 +37,45 @@ define(function (require) {
 		trySignup: function(e) {
 			e.preventDefault();
 
-			fields = {
-		        'login': this.$el.find('.sign-form__login'),
-		        'email': this.$el.find('.sign-form__email'),
-		        'password': this.$el.find('.sign-form__password'),
-		        'submitPassword': this.$el.find('.sign-form__submit-password')
-		    }
-
-
-			var userData = {
-        		login: fields.login.val(),
-        		email: fields.email.val(),
-        		password: fields.password.val(),
-        		submitPassword: fields.submitPassword.val()
+		    var errorField = this.$el.find('.sign-form-error').text('');
+			var uData = {
+        		'login': this.inputs.login.val(),
+        		'email': this.inputs.email.val(),
+        		'password': this.inputs.password.val()/*,
+        		'submitPassword': this.inputs.submitPassword.val()*/
       		};
+      		var u = new User()
+			var error = u.validate(uData);
 
-			var user = new User();
-			var error = user.validate(userData);
-			var errorField = this.$el.find('.sign-form-error').text('');
-			var session = Client.getSession()
 			if (error != undefined ) {
 				errorField.text(error);
 			} 
 			else {
-				//Client.Session.signup(userData.login, userData.email, userData.password);
-				session.signup(userData.login, userData.email, userData.password);
-			}
+				var user = app.getUser();
+				user.once('register', (function(result) {
+					this.expectAuth = true;
+				}).bind(this));
 
+				user.signup(uData);
+			}
+			return false;
 		},
 
 		showError: function(err) {
 			errorField = this.$el.find('.sign-form-error').text(err);
 		},
 
-		photo: function(e) {
+		onAuth: function(result) {
+			console.log('onAuth')
+			var router = require('router');
+			console.log(result.isAuth)
+		    if(result.isAuth && this.expectAuth) {
+		    	this.expectAuth = false;
+		        router.go('');
+      }
+		},
+
+		/*photo: function(e) {
 
 			input = $('.upload-pic')[0];
             photo = $('#photo')[0];
@@ -134,11 +146,12 @@ define(function (require) {
 				$('.pop-up__camera__btn').hide();
 			})
 			
-		},
+		},*/
 
 		show: function () {
 
             this.trigger('show');
+            this.delegateEvents();
             this.$el.show();
         },
 
@@ -147,5 +160,5 @@ define(function (require) {
 		}
 	})
 
-	return new SignupView();
+	return SignupView;
 });

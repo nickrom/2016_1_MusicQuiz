@@ -25,5 +25,5 @@ define(function (require) {
 		}
 	})
 
-	return new gameView()
+	return gameView;
 });

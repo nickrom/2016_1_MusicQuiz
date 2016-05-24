@@ -1,19 +1,19 @@
 define(function(require){
 
 	var Backbone = require('backbone'),
-		ScoreboardModel = require('models/score'),
-		_ = require('underscore')
+		model = require('models/score');
 
 	var ScoreBoard = Backbone.Collection.extend({
 
-		model: ScoreboardModel,
+		model: model,
+		//url: 'api/scoreboard',//!!!!!!!!!!
 
 		comparator : function(userScore) {
 			return -userScore.get('score')
 		}
 
-	})
+	});
 
-	return ScoreBoard
+	return ScoreBoard;
 })
 

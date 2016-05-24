@@ -1,42 +1,54 @@
-define(function (require) {
+define(function(require) {
 
 	var Backbone = require('backbone'),
 		tmpl = require('tmpl/main'),
-		Session = require('models/session'),
-		Client = require('models/client')
+		app = require('app');
 
 
 	var mainView = Backbone.View.extend({
 
 		initialize: function() {
-			this.template = tmpl
-			this.render()
-		},
 
-		data: {
-			isAuth: 1
+			 if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/serviceWorker.js').then(function(reg) {
+                	console.log('Registration succeeded. Scope is ' + reg.scope);
+	            }).catch(function(error) {
+	            	console.log('Registration failed with ' + error);
+	            });
+            }
+
+			this.template = tmpl;
+			this.render();
 		},
 
 		render: function() {
+
+			var authData = app.getAuthData();
 			var html = this.template({
-				'username': Client.getSession().get('username')/*,
-				'score': Client.getSession().get('score')*/
-			})
-			this.$el.html(html)
-			return this;
+				isAuth: authData.isAuth,
+				username: authData.user.get('login'),
+				score: authData.user.get('points')
+			});
+
+			this.$el.html(html);
 		},
 
 		show: function () {
-			this.render()
+			if(!navigator.onLine) {
+				console.log('Проверьте соединение с интернетом!')
+			}
             this.trigger('show');
             this.$el.show();
-            console.log(Client.getSession().get('username'))
         },
 
 		hide: function() {
 			this.$el.hide()
-		}
-	})
+		},
 
-	return new mainView();
+		onAuth: function() {
+			this.render();
+		}
+	});
+
+	return mainView;
 });

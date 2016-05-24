@@ -4,17 +4,18 @@ $btn-active-box-shadow:
     0 1px 1px 1px rgba(255,255,255,.4),
     0 -1px 1px 1px rgba(0,0,0,.1);
 
-.content__wrapper__game-menu__button {
+/*.content__wrapper__game-menu__button {
     border: 1px solid black;
+    margin: auto auto;
     margin-bottom: 2%;
     background-color: white;
     box-shadow: $btn-box-shadow;
     left: 0px;
     top: 0px;
     position: inherit;
-    width: 100%;
+    width: 75%;
     height: auto;
-    font-size: 3.25em;
+    font-size: 2.8em;
     display: block;
     font-family: aleksandracregular;
     color: black;
@@ -29,4 +30,54 @@ $btn-active-box-shadow:
 
 .content__wrapper__game-menu__button:active, .song__name:active {
     box-shadow: $btn-active-box-shadow;
+}*/
+
+.content__wrapper__game-menu__button {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 350px;
+  height: 50px;
+  margin: auto;
+  background-color: #A8A5A5;
+  font-family: aleksandracregular;
+  border-radius: 5px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  overflow: hidden;
+  padding-top: 1%;
+  margin-bottom: 2%;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: 20px auto 0;
+    background-color: white;
+    border-radius: 10px;
+    opacity: 0;
+  }
+  
+  &:hover {
+    &::before {
+      transform: scale(30);
+      transition: .5s;
+      animation: mymove .5s;
+    }
+  }
+}
+
+@keyframes mymove {
+  0%   {opacity: .1;}
+  50%  {opacity: .5;}
+  100% {opacity: 0;}
 }

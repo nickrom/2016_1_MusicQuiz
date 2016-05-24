@@ -6,6 +6,7 @@ define(function (require) {
         LoginView = require('views/login'),
         SignupView = require('views/signup'),
         MainView = require('views/main');
+    var app = require('app');
 
     
     var Manager = Backbone.View.extend({
@@ -13,6 +14,10 @@ define(function (require) {
         el: '#page',
 
         views: [],
+
+        initialize: function() {
+            this.listenTo(app, 'auth', this.onAuth.bind(this));
+        },
 
         addView: function(view) {
             this.views.push(view);
@@ -37,6 +42,10 @@ define(function (require) {
                 }
             });
         },
+
+        onAuth: function(result) {
+            return this.handleViewsEvent('onAuth', arguments);
+        }
 
     });
 

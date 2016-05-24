@@ -1,23 +1,28 @@
 define(function(require){
 
     var Backbone = require('backbone'),
-        MainMenuView = require('views/main'),
+        _ = require('underscore'),
+        MainView = require('views/main'),
         LoginView = require('views/login'),
         SignupView = require('views/signup'),
         GameView = require('views/game'),
         MenuView = require('views/menu'),
         ScoreboardView = require('views/scoreboard'),
         ViewManager = require('views/viewManager'),
-        Session = require('models/session'),
-        Client = require('models/client')
+        app = require('app')
     var $page = $('#page');
 
-    _.each([MainMenuView,
-        MenuView,
-        GameView,
-        ScoreboardView,        
-        LoginView,
-        SignupView], function(view) {
+    var mainView = new MainView(),
+        loginView = new LoginView(),
+        signupView = new SignupView(),
+        gameView = new GameView(),
+        scoreboardView = new ScoreboardView(); 
+
+    _.each([mainView,
+        gameView,
+        scoreboardView,        
+        loginView,
+        signupView], function(view) {
         ViewManager.addView(view);
     });
 
@@ -27,39 +32,30 @@ define(function(require){
             'scoreboard': 'scoreboardAction',
             'login': 'loginAction',
             'signup': 'signupAction',
-            'menu': 'menuAction',
-            'main': 'navigateAction',
-            '*default': 'navigateAction'
+            '*default': 'defaultAction'
             
         },
-        initialize: function () {
-            this.listenTo(Client.getSession(), 'login', function () { this.navigate('#main', {trigger: true})}.bind(this));
+
+        go: function(where) {
+            return this.navigate(where, { trigger: true });
         },
-        defaultActions: function () {
-            this.navigate('main')
-            MainMenuView.show()
+        initialize: function () {
+           // this.listenTo(Client.getSession(), 'login', function () { this.navigate('#main', {trigger: true})}.bind(this));
         },
         scoreboardAction: function () {
-            ScoreboardView.show()
+            scoreboardView.show()
         },
         gameAction: function () {
-            GameView.show()
+            gameView.show()
         },
         loginAction: function () {
-            LoginView.show()
+            loginView.show()
         },
         signupAction: function () {
-            SignupView.show()
+            signupView.show()
         },
-        menuAction: function () {
-            MenuView.show()
-        },
-        defaultActions: function () {
-            MainMenuView.show()
-        },
-        navigateAction: function () {
-            this.navigate('menu')
-            MainMenuView.show()
+        defaultAction: function () {
+            mainView.show()
         }
     });
 

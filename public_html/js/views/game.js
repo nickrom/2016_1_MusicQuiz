@@ -1,16 +1,19 @@
-define(function (require) {
+define(function(require) {
 
 	var Backbone = require('backbone'),
 		tmpl = require('tmpl/game'),
-		Audio = require('models/audio'),
-		WaveSurfer = require('wavesurfer');
+		WaveSurfer = require('wavesurfer'),
+		SinglePlayer = require('views/game/singleplayer');
 
 
 	var gameView = Backbone.View.extend({
 		template: tmpl,
 		events: {
-			"click .container__game ": "playAudio",
-			"click .song_name": "stopAudio"
+			/*"click .container__game ": "playAudio",
+			"click .song_name": "stopAudio",*/
+			"click .game__type#single": "singlePlayer",
+			"click .game__type#multi": "multiPlayer",
+			"click ": "cancel",
 		},
 		initialize: function() {
 			this.render()
@@ -30,26 +33,20 @@ define(function (require) {
 			this.$el.hide()
 		},
 
+		singlePlayer: function() {
+			this.$('.game__type').hide()
+			this.$('.game-field').show()
+			SinglePlayer();
+
+		},
+
+		multiPlayer: function() {
+			this.$('.game__type').hide()
+			this.$('.search-opponent').show()
+		},
+
 		playAudio: _.once(function() {
 
-			var wavesurfer = WaveSurfer.create({
-			    container: '#waveform',
-			    waveColor: '#000066',
-			    progressColor: '#000066',
-			    fillParent: true,
-			    height: 96,
-			    hideScrollbar: true,
-			    barWidth: 1,
-			    pixelRatio: 1,
-			    loopSelection: false,
-  				backend: 'MediaElement'/*,
-			    cursorColor : 'transparent'*/
-			});
-
-			wavesurfer.on('ready', function () {
-			    wavesurfer.play();
-			});
-			wavesurfer.load('/api/music/1');
 			
 		}),
 
@@ -60,6 +57,6 @@ define(function (require) {
 
 	})
 
-	return new gameView()
+	return gameView;
 
 });

@@ -52,9 +52,9 @@ define(function (require) {
 				}
 			])
 
-
 			this.render()
 		},
+           
 
 		render: function() {
 			var html = this.template({
@@ -74,6 +74,6 @@ define(function (require) {
 		}
 	})
 
-	return new scoreboardView()
+	return scoreboardView;
 
 });

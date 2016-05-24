@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="data">
     <div class="content__wrapper">
         <div class="wrapper__scoreboard">
@@ -20,7 +20,7 @@
                     </span>
             </div>
             </fest:each>
-            <a class="back-scoreboard button" type="back" href="#main">
+            <a class="back-scoreboard-button" type="back" href="#main">
                 <i class="fa fa-caret-left fa-lg"></i>
                 <fest:space/>
                 BACK
@@ -28,7 +28,4 @@
         </div>
     </div>
 </fest:template>
-=======
-<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-</fest:template>
->>>>>>> tp/v4
+
