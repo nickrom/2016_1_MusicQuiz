@@ -7,7 +7,7 @@ define(function(require){
     	default: {
     		'name': '',
     		'score': 0
-    	},
+    	}
 
     });
 

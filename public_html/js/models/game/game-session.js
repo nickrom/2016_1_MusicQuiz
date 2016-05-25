@@ -19,7 +19,7 @@ define(function(require){
     	},
 
         //isNew!!!!!!!!!
-    	url: "/api/game",
+    	url: "/gameplay",
 
     	initialize: function() {
 

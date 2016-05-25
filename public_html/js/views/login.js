@@ -25,12 +25,6 @@ define(function (require) {
 			this.$el.html(html);
 		},
 
-		clearInputs: function() {
-			_.each(this.inputs, function(item) {
-				item.val('');
-			});
-		},
-
 		show: function () {
             this.trigger('show');
             this.delegateEvents();

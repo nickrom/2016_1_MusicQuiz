@@ -8,6 +8,10 @@ define(function(require) {
 
 	var audio_urlRoot = '/api/music/'
 
+	//var exampleSocket = new WebSocket("ws://0.0.0.0:9000/gameplay");
+
+
+
 	function shuffle(a) {
 	    var j, x, i;
 	    for (i = a.length; i; i -= 1) {

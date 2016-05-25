@@ -6,7 +6,7 @@ define(function(require){
 	var ScoreBoard = Backbone.Collection.extend({
 
 		model: model,
-		//url: 'api/scoreboard',//!!!!!!!!!!
+		url: 'api/scores',
 
 		comparator : function(userScore) {
 			return -userScore.get('score')

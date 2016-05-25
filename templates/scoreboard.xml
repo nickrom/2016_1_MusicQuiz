@@ -5,17 +5,17 @@
             <span class="wrapper__scoreboard__header">
                 SCOREBOARD
             </span>
-            <fest:each iterate="data.scores" index="i" value="v">
+            <fest:each iterate="data" index="i" value="v">
                 <div class="scoreboard__item">
                     <span>
                         <fest:value>
-                            v.name
+                            v.login
                         </fest:value>
                         <fest:space/>
                         :
                         <fest:space/>
                         <fest:value>
-                            v.score
+                            v.points
                         </fest:value>
                     </span>
             </div>
