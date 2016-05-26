@@ -1,3 +1,4 @@
+"use strict";
 define(function (require) {
 
 	var Backbone = require('backbone'),
@@ -20,7 +21,7 @@ define(function (require) {
 		initialize: function() {
 			this.template = tmpl;
 			this.render();
-			this.listenTo(app.getSession(), 'formError', this.showError);
+			this.listenTo(app.getUser(), 'formError', this.showError);
 			this.inputs = {
 				'login': this.$el.find('.sign-form__login'),
 		        'email': this.$el.find('.sign-form__email'),
@@ -31,7 +32,6 @@ define(function (require) {
 
 		render: function() {
 			this.$el.html(this.template);
-			return this;
 		},
 
 		trySignup: function(e) {
@@ -41,10 +41,9 @@ define(function (require) {
 			var uData = {
         		'login': this.inputs.login.val(),
         		'email': this.inputs.email.val(),
-        		'password': this.inputs.password.val()/*,
-        		'submitPassword': this.inputs.submitPassword.val()*/
+        		'password': this.inputs.password.val()
       		};
-      		var u = new User()
+      		var u = new User();
 			var error = u.validate(uData);
 
 			if (error != undefined ) {
@@ -62,13 +61,11 @@ define(function (require) {
 		},
 
 		showError: function(err) {
-			errorField = this.$el.find('.sign-form-error').text(err);
+			var errorField = this.$el.find('.sign-form-error').text(err);
 		},
 
 		onAuth: function(result) {
-			console.log('onAuth')
 			var router = require('router');
-			console.log(result.isAuth)
 		    if(result.isAuth && this.expectAuth) {
 		    	this.expectAuth = false;
 		        router.go('');

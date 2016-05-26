@@ -1,4 +1,4 @@
-var CACHE = 'v3';
+var CACHE = 'game-cache';
 this.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE).then(function(cache) {
@@ -15,20 +15,19 @@ this.addEventListener('install', function(event) {
         })
     );
 });
-/* переписать как у некита fetch не должен put
 this.addEventListener('fetch', function(event) {
     event.respondWith(
         fetch(event.request).then(function(response) {
-            caches.open(CACHE)//.then(function(cache) {
-               // cache.put(event.request, response.clone());
-           // });
+            caches.open(CACHE).then(function(cache) {
+                cache.put(event.request, response.clone());
+            });
             return response;
         }).catch(function(error) {
             return caches.match(event.request);
         })
     );
 });
-*/
+
 this.addEventListener('activate', function(event) {
     var cache_white_list = [CACHE];
     console.log('activate');

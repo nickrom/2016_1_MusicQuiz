@@ -1,3 +1,4 @@
+"use strict";
 define(function(require){
 
     var Backbone = require('backbone'),
@@ -9,7 +10,7 @@ define(function(require){
         MenuView = require('views/menu'),
         ScoreboardView = require('views/scoreboard'),
         ViewManager = require('views/viewManager'),
-        app = require('app')
+        app = require('app');
     var $page = $('#page');
 
     var mainView = new MainView(),
@@ -32,6 +33,7 @@ define(function(require){
             'scoreboard': 'scoreboardAction',
             'login': 'loginAction',
             'signup': 'signupAction',
+            'logout': 'loginAction',
             '*default': 'defaultAction'
             
         },
@@ -43,19 +45,23 @@ define(function(require){
            // this.listenTo(Client.getSession(), 'login', function () { this.navigate('#main', {trigger: true})}.bind(this));
         },
         scoreboardAction: function () {
-            scoreboardView.show()
+            scoreboardView.show();
         },
         gameAction: function () {
-            gameView.show()
+            gameView.show();
         },
         loginAction: function () {
-            loginView.show()
+            loginView.show();
         },
         signupAction: function () {
-            signupView.show()
+            signupView.show();
         },
         defaultAction: function () {
-            mainView.show()
+            mainView.show();
+        },
+        logoutAction: function() {
+            app.getSession().logout();
+            this.go('main');
         }
     });
 

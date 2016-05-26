@@ -1,6 +1,7 @@
+"use strict";
 define(function(require){
 
-    var Backbone = require('backbone')
+    var Backbone = require('backbone');
 
     var Scoreboard = Backbone.Model.extend({
 

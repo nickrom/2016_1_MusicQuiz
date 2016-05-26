@@ -1,3 +1,4 @@
+"use strict";
 define(function(require){
 	var Backbone = require('backbone');
     var $ = require('jquery');
@@ -35,7 +36,7 @@ define(function(require){
                 // idSound
                 // answers
                 //time
-            })
+            });
         },
 
         postAnswer: function() {
@@ -43,7 +44,7 @@ define(function(require){
             this.save({
                 //idGamesession
                 //answer
-            })
+            });
         },
 
         getSound: function() {
@@ -51,7 +52,7 @@ define(function(require){
                 //rightAnswer
                 //idSound
                 //answers
-            })
+            });
         },
 
         getGameResult: function() {
@@ -59,7 +60,7 @@ define(function(require){
                 //winner
                 //points
                 //enemyPoints
-            })
+            });
         }
 
     });

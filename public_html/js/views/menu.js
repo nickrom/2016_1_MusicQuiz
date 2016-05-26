@@ -1,18 +1,18 @@
+"use strict";
 define(function (require) {
 
 	var Backbone = require('backbone'),
-		tmpl = require('tmpl/menu')
+		tmpl = require('tmpl/menu');
 
 	var gameView = Backbone.View.extend({
 		template: tmpl,
 
 		initialize: function() {
-			this.render()
+			this.render();
 		},
 
 		render: function() {
-			this.$el.html(this.template)
-			return this;
+			this.$el.html(this.template);
 		},
 
 		show: function () {
@@ -21,9 +21,9 @@ define(function (require) {
         },
 
 		hide: function() {
-			this.$el.hide()
+			this.$el.hide();
 		}
-	})
+	});
 
 	return gameView;
 });

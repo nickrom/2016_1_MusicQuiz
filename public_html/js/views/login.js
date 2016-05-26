@@ -1,3 +1,4 @@
+"use strict";
 define(function (require) {
 
 	var Backbone = require('backbone'),
@@ -32,11 +33,16 @@ define(function (require) {
         },
 
 		hide: function () {
-			this.$el.hide()
+			this.$el.hide();
+		},
+
+		clearFields: function() {
+			this.$('.sign-form__password').val('');
+			this.$('.sign-form__email').val('');
 		},
 
 		tryLogin: function (e) {
-			e.preventDefault()
+			e.preventDefault();
 
         	var uData = {
 		        'email': this.inputs.email.val(),
@@ -61,7 +67,7 @@ define(function (require) {
 		},
 
 		showError: function (err) {
-			errorField = this.$el.find('.sign-form-error').text(err);
+			var errorField = this.$el.find('.sign-form-error').text(err);
 		},
 
 		onAuth: function(result) {

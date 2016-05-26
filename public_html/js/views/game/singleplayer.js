@@ -1,12 +1,13 @@
+"use strict";
 define(function(require) {
 		$ = require('jquery'),
 		_ = require('underscore');
 
 	var soundCounter = 5;
 
-	var score = 0
+	var score = 0;
 
-	var audio_urlRoot = '/api/music/'
+	var audio_urlRoot = '/api/music/';
 
 	//var exampleSocket = new WebSocket("ws://0.0.0.0:9000/gameplay");
 
@@ -69,34 +70,34 @@ define(function(require) {
 		}
 
 
-// функция которая после нажатия вызывает себя же со след аргументами то есть с новой песней
+// функцию которая после нажатия вызывает себя же со след аргументами то есть с новой песней
 // и все это фиксируется временем
-			console.log('call')
-			var answers = model.a.answer.slice()
-			answers.push(model.a.author)
-			var right = model.a.author
+			console.log('call');
+			var answers = model.a.answer.slice();
+			answers.push(model.a.author);
+			var right = model.a.author;
 			//_.shuffle(answers);
-			shuffle(answers)
-			var url = audio_urlRoot + a.id
+			shuffle(answers);
+			var url = audio_urlRoot + a.id;
 
 			
-			buttons.btn1.text(answers[0])
-			buttons.btn2.text(answers[1])
-			buttons.btn3.text(answers[2])
-			buttons.btn4.text(answers[3])
+			buttons.btn1.text(answers[0]);
+			buttons.btn2.text(answers[1]);
+			buttons.btn3.text(answers[2]);
+			buttons.btn4.text(answers[3]);
 			this.$('.song__button').once('click', function(event) {
 				//console.log($(event.target).text())
-				var selected = $(event.target)
+				var selected = $(event.target);
 				if(selected.text() === right) {
 					score++;// переделать с зависимостью от времени
-					console.log(score)
+					console.log(score);
 				}
 				/*buttons.btn1.text('')
 				buttons.btn2.text('')
 				buttons.btn3.text('')
 				buttons.btn4.text('')*/
 				answers.length = 0;
-			})
+			});
 
 	}
 

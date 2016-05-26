@@ -1,3 +1,4 @@
+"use strict";
 require.config({
     urlArgs: "v=" + (new Date()).getTime(),
     baseUrl: "js",
@@ -26,4 +27,4 @@ define(function(require) {
         router = require('router'),
         app = require('app');
     Backbone.history.start();
-})
+});

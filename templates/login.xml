@@ -16,7 +16,7 @@
 			<div class="sign-form-error"></div>
 			<form action="">
                 <input class="sign-form__email" type="email" maxlength="20" placeholder="EMAIL"/>
-                <input class="sign-form__password" type="password" maxlength="10" placeholder="PASSWORD"/>
+                <input class="sign-form__password" type="password" maxlength="20" placeholder="PASSWORD"/>
                 <a class="back-form button" type="back" href="#menu">
                 	<i class="fa fa-caret-left fa-lg"></i>
                 	<fest:space/>

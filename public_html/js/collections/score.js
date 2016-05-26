@@ -1,3 +1,4 @@
+"use strict";
 define(function(require){
 
 	var Backbone = require('backbone'),
@@ -9,11 +10,11 @@ define(function(require){
 		url: 'api/scores',
 
 		comparator : function(userScore) {
-			return -userScore.get('score')
+			return -userScore.get('score');
 		}
 
 	});
 
 	return ScoreBoard;
-})
+});
 

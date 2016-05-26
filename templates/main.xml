@@ -27,10 +27,10 @@
 	                    </fest:value>
 					</span>
 				</div>
-				<a class="content__wrapper__game-menu__button" href='#'>Одиночная игра</a>
+				<a class="content__wrapper__game-menu__button" href='#game'>Одиночная игра</a>
 				<a class="content__wrapper__game-menu__button" href='#'>Игра против соперника</a>
 				<a class="content__wrapper__game-menu__button" href='#scoreboard'>Лучшие игроки</a>
-				<a class="content__wrapper__game-menu__button" href='#'>Выйти</a>
+				<a class="content__wrapper__game-menu__button" href='#logout'>Выйти</a>
 			</fest:if>
 			<fest:if test="!data.isAuth">
 				<div class="">

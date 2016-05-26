@@ -1,3 +1,4 @@
+"use strict";
 define(function (require) {
 
 	var Backbone = require('backbone'),
@@ -12,13 +13,11 @@ define(function (require) {
 		initialize: function() {
 			this.listenTo(this.session, 'auth', this._onAuth.bind(this));
 			this.listenTo(this.session, 'logout', this._onLogout.bind(this));
+			this.listenTo(this.session, 'clear', this.clear.bind(this));
 
 			this.session.listenTo(this.user, 'register', (function(attrs) {
-				//this.session.check();
-				console.log(attrs)
-				this.session.tryLogin(attrs.email, attrs.password)
+				this.session.tryLogin(attrs.email, attrs.password);
 			}).bind(this));
-			//this.session.check();
 		},
 
 		getSession: function() {
@@ -52,8 +51,6 @@ define(function (require) {
 		},
 
 		_onLogout: function() {
-			//this.user.clear();
-			//this.session.clear();
 			this.trigger('auth', this.getAuthData());
 		}
 	});

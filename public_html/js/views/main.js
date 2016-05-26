@@ -1,3 +1,4 @@
+"use strict";
 define(function(require) {
 
 	var Backbone = require('backbone'),
@@ -37,12 +38,13 @@ define(function(require) {
 			if(!navigator.onLine) {
 				console.log('Проверьте соединение с интернетом!')
 			}
+			this.render();
             this.trigger('show');
             this.$el.show();
         },
 
 		hide: function() {
-			this.$el.hide()
+			this.$el.hide();
 		},
 
 		onAuth: function() {

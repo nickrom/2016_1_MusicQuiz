@@ -1,3 +1,4 @@
+
 define(function(require){
 
     var Backbone = require('backbone');
@@ -22,12 +23,12 @@ define(function(require){
             }
             options || (options = {});
             options.url = this.url;
-            return Backbone.sync.apply(this, arguments)
+            return Backbone.sync.apply(this, arguments);
         },
 
         validate: function(attrs, options) {
 
-            emailValidator = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+            var emailValidator = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
             if($.trim(attrs.email) === "" || !emailValidator.test($.trim(attrs.email))) {
                 var error = "Ошибка: невалидный e-mail";
                 return error;
@@ -63,6 +64,9 @@ define(function(require){
                 password: password
             }, {
                 success: (function(obj, result) {
+                    this.trigger('clear');
+                    $('.sign-form__password').val('')
+                    $('.sign-form__email').val('')
                     this.set('auth', true);
                     this.trigger('auth', {
                         result: true,
@@ -71,10 +75,7 @@ define(function(require){
                 }).bind(this),
                 error: (function(obj, result) {
                     this.set('auth', false);
-                    this.trigger('auth', {
-                        result: false,
-                        error: 'Ошибка! Неверный логин и/или пароль!'
-                    });
+                    this.trigger('formError', 'Ошибка! Неверный логин и/или пароль!');
                 }).bind(this)
             });
         },
@@ -83,7 +84,7 @@ define(function(require){
             this.destroy({
                 success: (function(data) {
                     this.set('auth', false);
-                    //this.trigger('logout');
+                    this.trigger('logout');
                 }).bind(this)
             });
         }
@@ -93,4 +94,3 @@ define(function(require){
         return Session;
 
     });
-

@@ -1,8 +1,9 @@
+"use strict";
 define(function (require) {
 
 	var Backbone = require('backbone'),
 		tmpl = require('tmpl/scoreboard'),
-		scores = require('collections/score')
+		scores = require('collections/score');
 
 	var scoreboardView = Backbone.View.extend({
 		template: tmpl,
@@ -13,7 +14,7 @@ define(function (require) {
 
 		render: function() {
 			var html = this.template(this.collection.toJSON());
-			this.$el.html(html)
+			this.$el.html(html);
 		},
 
 		show: function () {
@@ -34,9 +35,9 @@ define(function (require) {
         },
 
 		hide: function() {
-			this.$el.hide()
+			this.$el.hide();
 		}
-	})
+	});
 
 	return scoreboardView;
 

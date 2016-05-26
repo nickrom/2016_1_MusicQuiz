@@ -1,7 +1,8 @@
+
 define(function(require){
 
-    var Backbone = require('backbone')
-    var $ = require('jquery')
+    var Backbone = require('backbone');
+    var $ = require('jquery');
 
     var User = Backbone.Model.extend({
 
@@ -21,26 +22,26 @@ define(function(require){
             }
             options || (options = {});
             options.url = this.url();
-            return Backbone.sync.apply(this, arguments)
+            return Backbone.sync.apply(this, arguments);
         },
 
     	validate: function(attrs, options) {
-            loginValidator = /^[a-z0-9~!$%^&*_=+]*$/i
+            var loginValidator = /^[a-z0-9~!$%^&*_=+]*$/i
     		if($.trim(attrs.login) === "" || !loginValidator.test($.trim(attrs.login))) {
-    			var error = "Ошибка: невалидный логин"
+    			var error = "Ошибка: невалидный логин";
     			return error;
     		}
-            emailValidator = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i
+            var emailValidator = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
             if($.trim(attrs.email) === "" || !emailValidator.test($.trim(attrs.email))) {
-                var error = "Ошибка: невалидный e-mail"
+                var error = "Ошибка: невалидный e-mail";
                 return error;
             }
 
-            $.trim(attrs.password)
-            $.trim(attrs.submitPassword)
+            $.trim(attrs.password);
+            $.trim(attrs.submitPassword);
             
             if(attrs.password.length < 6) {
-                var error = "Ошибка: невалидный пароль"
+                var error = "Ошибка: невалидный пароль";
                 return error;
             }
     	},
@@ -60,10 +61,7 @@ define(function(require){
                 }).bind(this),
                 error: (function(obj, result) {
                     console.log('err')
-                    this.trigger('register', {
-                        result: false,
-                        error: 'Ошибка! Данная почта уже используется!'
-                    });
+                    this.trigger('formError', 'Ошибка! Неверный логин и/или пароль!');
                 }).bind(this)
             });
         }
