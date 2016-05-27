@@ -27,7 +27,12 @@ define(function(require) {
 		show: function () {
             this.trigger('show');
             this.$el.show();
-            this.exampleSocket = new WebSocket("ws://0.0.0.0:9000/api/gameplay");
+            this.ws = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/api/gameplay");
+            this.ws.onmessage = function(event) {
+            	var msg = JSON.parse(event.data);
+            	console.log(msg);
+            }
+           // this.ws.send('123');
             console.log(app.getAuthData().isAuth);
         },
 
