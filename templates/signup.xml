@@ -9,6 +9,7 @@
 				<input class="sign-form__login" type="login" minlenght="1" maxlength="20" placeholder="LOGIN"/>
                 <input class="sign-form__email" type="email" minlenght="1" maxlength="20" placeholder="EMAIL"/>
                 <input class="sign-form__password" type="password" minlenght="1" maxlength="15" placeholder="PASSWORD"/>
+
                 <div class="form__photo__widget">
                     <a class="button-photo" id="pop-up" type="back">
                         <i class="fa fa-camera"></i>

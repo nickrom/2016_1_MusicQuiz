@@ -17,13 +17,14 @@
 			<form action="">
                 <input class="sign-form__email" type="email" maxlength="20" placeholder="EMAIL"/>
                 <input class="sign-form__password" type="password" maxlength="20" placeholder="PASSWORD"/>
-                <a class="back-form button" type="back" href="#menu">
-                	<i class="fa fa-caret-left fa-lg"></i>
-                	<fest:space/>
-                	BACK
+                <a class="back-form button" type="back" href="#main">
+                    <i class="fa fa-caret-left fa-lg">
+                    </i>
+                    <fest:space/>
+                    BACK
                 </a>
                 <button class="submit-form button" type="submit">
-                	SIGN IN
+                    SIGN IN
                 </button>
             </form>
             <span></span>
