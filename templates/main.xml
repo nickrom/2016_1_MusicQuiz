@@ -35,7 +35,7 @@
 			<fest:if test="!data.isAuth">
 				<div class="">
 					<a class="content__wrapper__game-menu__button" href='#login'>Войти</a>
-					<a class="content__wrapper__game-menu__button" href='#'>Одиночная игра</a>
+					<a class="content__wrapper__game-menu__button" href='#game'>Одиночная игра</a>
 					<a class="content__wrapper__game-menu__button" href='#scoreboard'>Лучшие игроки</a>
 				</div>
 			</fest:if>

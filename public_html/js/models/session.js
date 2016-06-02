@@ -18,6 +18,7 @@ define(function(require){
         initialize: function() {},
 
         sync: function (method, model, options) {
+            debugger;
             if (method === "create") {
                 method = "update";
             }

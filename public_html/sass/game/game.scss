@@ -82,13 +82,10 @@ $song-btn-box-shadow:
     margin-right: auto;
 }
 
-.song__button {
-    display: block;
-    border: 1px solid black;
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
+.current-score {
+    margin: auto auto;
     margin-bottom: 0.5em;
+    padding-top: 1.5em;
     
     text-align: center;
     height: 1.8em;
@@ -98,28 +95,73 @@ $song-btn-box-shadow:
     font-size: 2em;
 }
 
-.song__button__1:hover, .song__button__2:hover,
-.song__button__3:hover, .song__button__4:hover {
+.song-btn {
+    display: block;
+    border: 1px solid black;
+    width: 50%;
+    margin: auto auto;
+    margin-bottom: 0.5em;
+    
+    text-align: center;
+    height: 1.8em;
+    line-height: 1.8em;
+    font-family: aleksandracregular;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.song-btn:hover {
     background: $song-btn-hover-background;
     box-shadow: $song-btn-box-shadow;
 }
 
-.search-opponent {
+li {
+    list-style: none;
+}
+
+#startplace, #results {
+    text-align: center;
+    padding-top: 11%;
+    clear: both;
+}
+
+#startplace h1 {
+    font-size: 80px;
+}
+
+#startplace li {
+    display: inline-block;
+    padding-right: 40px;
+    font-size: 19px;
+}
+
+#startplace li:hover {
+    text-decoration: underline;
+}
+
+#quizspot {
+    margin:auto auto;
+    width: 100%;
+}
+
+#quizspot p {
+    font-size: 24px;
+    clear: both;
+}
+
+#results h1 {
+    font-size: 60px;
+}
+
+#startplace p {
+    font-size: 19px;
+}
+
+.hidden {
     display: none;
 }
 
-.search-opponent__info {
-    display: inherit;
-}
 
-.search-opponent__sine-loader {
-    display: inherit;
-}
-
-.search-opponent__name {
-    display: inherit;
-}
-
-.search-opponent__ready-button {
-    display: inherit;
+audio{
+    display: none;
 }

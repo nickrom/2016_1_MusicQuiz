@@ -4,7 +4,7 @@ define(function(require) {
 	var Backbone = require('backbone'),
 		tmpl = require('tmpl/game'),
 		WaveSurfer = require('wavesurfer'),
-		SinglePlayer = require('views/game/singleplayer');
+		SinglePlayer = require('views/game/app');
 	var app = require('app');
 
 
@@ -12,7 +12,7 @@ define(function(require) {
 		template: tmpl,
 		events: {
 			"click .song_name": "postAnswer",
-		//	"click #single": "singlePlayer",
+			"click #single": "singlePlayer",
 		},
 		initialize: function() {
 			this.render();
@@ -27,12 +27,13 @@ define(function(require) {
 		show: function () {
             this.trigger('show');
             this.$el.show();
-            this.ws = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/api/gameplay");
+            /*this.ws = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/api/gameplay");
             this.ws.onmessage = function(event) {
             	var msg = JSON.parse(event.data);
             	console.log(msg);
-            }
+            }*/
            // this.ws.send('123');
+           SinglePlayer();
             console.log(app.getAuthData().isAuth);
         },
 
@@ -95,21 +96,6 @@ define(function(require) {
 				this.enemyPoints = msg.enemyPoints;
 			} 
 		},
-
-		game: function() {
-			startGame();
-			click(this.answers);
-
-		},
-
-
-		changeText: function(answers) {
-			this.buttons.btn1.text(answers[0]);
-			this.buttons.btn2.text(answers[1]);
-			this.buttons.btn3.text(answers[2]);
-			this.buttons.btn4.text(answers[3]);
-		},
-
 
 	});
 
